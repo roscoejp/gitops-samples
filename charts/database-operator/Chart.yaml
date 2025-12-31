@@ -1,4 +1,4 @@
 apiVersion: v2
 name: database-operator
-description: Chart that would install a CRD.
+description: Chart that would install a CRD. Using the templates directory allows for direct control of CRDs.
 version: 1.2.3
