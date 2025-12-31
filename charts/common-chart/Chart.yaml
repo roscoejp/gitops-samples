@@ -1,0 +1,4 @@
+apiVersion: v2
+name: common-chart
+description: Chart that contains common templates used by other charts.
+version: 1.2.3

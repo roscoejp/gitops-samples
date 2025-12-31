@@ -1,0 +1,16 @@
+apiVersion: v2
+name: podinfo-application
+description: Chart that creates an application, made up of components and resources.
+version: 1.2.3
+# Make use of Helm dependencies for easier interop between an application and its components/resources
+# See https://helm.sh/community/hips/hip-0025/#readiness
+dependencies:
+  - name: bucket-resource
+    repository: "file://..//bucket-resource/"
+    version: 1.2.3
+  - name: database-resource
+    repository: "file://..//database-resource/"
+    version: 1.2.3
+  - name: sample-component
+    repository: "file://..//sample-component/"
+    version: 1.2.3

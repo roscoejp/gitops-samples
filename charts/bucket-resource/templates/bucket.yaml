@@ -1,0 +1,13 @@
+{{- range $index, $name := .Values.names }}
+apiVersion: reliantrobin.org/v1
+kind: Bucket 
+metadata:
+  name: "{{ $.Values.prefix }}-s3-{{ $name }}-{{ $.Values.suffix }}"
+  annotations:
+    argocd.argoproj.io/sync-wave: "{{ $.Values.syncwave }}"
+spec:
+  name: "{{ $name }}"
+  prefix: "{{ $.Values.prefix }}"
+  suffix: "{{ $.Values.suffix }}"
+---
+{{- end }}

@@ -1,0 +1,11 @@
+replicas: 2
+
+bucket-resource:
+  prefix: ""
+  suffix: ""
+  names: ["one", "two", "three"]
+
+database-resource:
+  prefix: ""
+  suffix: ""
+  names: ["one", "two", "three"]

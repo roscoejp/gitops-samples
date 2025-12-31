@@ -1,0 +1,4 @@
+apiVersion: v2
+name: database-operator
+description: Chart that would install a CRD.
+version: 1.2.3

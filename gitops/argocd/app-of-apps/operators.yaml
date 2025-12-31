@@ -1,0 +1,32 @@
+# Operators needed to setup CRDs for the cluster
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  name: operators
+  namespace: argocd
+spec:
+  sources:
+    - path: charts/operators/bucket-operator
+      repoURL: "https://github.com/roscoejp/gitops-samples.git"
+      targetRevision: main
+    - path: charts/operators/database-operator
+      repoURL: "https://github.com/roscoejp/gitops-samples.git"
+      targetRevision: main
+  destination:
+    namespace: operators
+    server: "https://kubernetes.default.svc"
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2
+    syncOptions:
+      - CreateNamespace=true

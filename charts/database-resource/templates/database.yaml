@@ -1,0 +1,11 @@
+{{- range $index, $name := .Values.names }}
+apiVersion: reliantrobin.org/v1
+kind: Database 
+metadata:
+  name: "{{ $.Values.prefix }}-s3-{{ $name }}-{{ $.Values.suffix }}"
+spec:
+  name: "{{ $name }}"
+  prefix: "{{ $.Values.prefix }}"
+  suffix: "{{ $.Values.suffix }}"
+---
+{{- end }}

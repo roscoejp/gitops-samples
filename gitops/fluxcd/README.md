@@ -1,0 +1,3 @@
+- Kustomization for each tier
+- HelmRelease objects within each of those
+- artifactgenerators for merging values files

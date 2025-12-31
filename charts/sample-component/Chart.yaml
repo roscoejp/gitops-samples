@@ -1,0 +1,4 @@
+apiVersion: v2
+name: sample-component
+description: Chart that would render a component used by an application.
+version: 1.2.3
