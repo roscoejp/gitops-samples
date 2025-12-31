@@ -12,13 +12,13 @@ spec:
       ref: values_repo
     - path: charts/bucket-resource
       repoURL: "git@github.com:roscoejp/gitops-samples.git"
-      targetRevision: master
+      targetRevision: main
       helm:
         valuesFiles:
           - $values_repo/values/bucket-values.yaml
     - path: charts/database-resource
       repoURL: "git@github.com:roscoejp/gitops-samples.git"
-      targetRevision: master
+      targetRevision: main
       helm:
         valuesFiles:
           - $values_repo/values/database-values.yaml
