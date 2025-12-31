@@ -2,17 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "30"
-  name: application
+    argocd.argoproj.io/sync-wave: "20"
+  name: resources
   namespace: argocd
 spec:
   sources:
-    - path: charts/podinfo
-      repoURL: "https://github.com/stefanprodan/podinfo.git"
-      targetRevision: master
-      helm:
-        valuesFiles:
-          - $values_repo/values/podinfo-values.yaml
+    - repoURL: "git@github.com:roscoejp/gitops-samples.git"
+      targetRevision: main
+      ref: values_repo
   destination:
     namespace: default
     server: "https://kubernetes.default.svc"
