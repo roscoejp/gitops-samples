@@ -11,7 +11,7 @@ spec:
       targetRevision: main
       ref: values_repo
     - path: charts/podinfo
-      repoURL: "git@github.com:roscoejp/gitops-samples.git"
+      repoURL: "https://github.com/stefanprodan/podinfo.git"
       targetRevision: master
       helm:
         valuesFiles:
