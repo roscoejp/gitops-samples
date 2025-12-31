@@ -9,10 +9,10 @@ metadata:
 spec:
   sources:
     - path: charts/operators/bucket-operator
-      repoURL: "https://github.com/roscoejp/gitops-samples.git"
+      repoURL: "git@github.com:roscoejp/gitops-samples.git"
       targetRevision: main
     - path: charts/operators/database-operator
-      repoURL: "https://github.com/roscoejp/gitops-samples.git"
+      repoURL: "git@github.com:roscoejp/gitops-samples.git"
       targetRevision: main
   destination:
     namespace: operators
