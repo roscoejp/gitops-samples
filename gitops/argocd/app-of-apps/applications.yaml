@@ -7,6 +7,9 @@ metadata:
   namespace: argocd
 spec:
   sources:
+    - repoURL: "git@github.com:roscoejp/gitops-samples.git"
+      targetRevision: main
+      ref: values_repo
     - path: charts/podinfo
       repoURL: "https://github.com/stefanprodan/podinfo.git"
       targetRevision: master
