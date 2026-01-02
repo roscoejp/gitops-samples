@@ -10,14 +10,21 @@ Podinfo is used as a sample application with values read from the values directo
 ## Instructions
 After Argo has been installed to the cluster...
 ```bash
-# Add healthchecks to Application resources
+ARGO_EXAMPLE=app-of-apps  # one of: `app-of-apps`, `app-of-charts`
+# Add real healthchecks to Argocd applications and failing ones to CRs
 kubectl patch cm/argocd-cm -n argocd --type=merge -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/argocd-cm.yaml
-# Deploy the root Application
-kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/app-of-apps.yaml
+# Deploy the root Argocd applications
+kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/$ARGO_EXAMPLE.yaml
+# "Fix" the healthchecks for CRs to unblock progress
+kubectl patch cm/argocd-cm -n argocd --type=merge -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/argocd-cm-fix.yaml
 ```
 
 ## Progressive Syncs
-Progressive Syncs are an alpha feature so I would not recommend their use for anything outside of a homelab or development environment.
+[Progressive Syncs](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Progressive-Syncs/) are an alpha feature so I would not recommend their use for anything outside of a homelab or development environment.
 
 ## References
-- [Akuity](https://akuity.io/blog/application-dependencies-with-argo-cd) has good docs on the user of custom health checks to enable syncwaves at the application level.
+- [Akuity Application Dependencies](https://akuity.io/blog/application-dependencies-with-argo-cd)
+- [Argocd Cluster Bootstrapping](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/)
+- [Argocd Resource health](https://argo-cd.readthedocs.io/en/stable/operator-manual/health/#resource-health)
+- [Argocd Helm](https://argo-cd.readthedocs.io/en/latest/user-guide/helm/)
+- [Argocd Multiple Sources for an Application](https://argo-cd.readthedocs.io/en/latest/user-guide/multiple_sources/)
