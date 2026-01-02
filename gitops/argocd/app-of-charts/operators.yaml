@@ -4,7 +4,7 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "10"
-  name: aoa-operators
+  name: aoc-operators
   namespace: argocd
 spec:
   sources:

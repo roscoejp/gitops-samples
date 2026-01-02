@@ -3,7 +3,7 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "20"
-  name: resources
+  name: aoa-resources
   namespace: argocd
 spec:
   sources:

@@ -48,3 +48,10 @@ data:
       end
     end
     return hs
+  resource.customizations: |
+    reliantrobin.org/*:
+      health.lua: |
+        hs = {}
+        hs.status = "Healthy"
+        hs.message = "Faking Healthy"
+        return hs

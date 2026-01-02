@@ -1,21 +1,23 @@
-# Operators needed to setup CRDs for the cluster
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "10"
-  name: aoa-operators
+    argocd.argoproj.io/sync-wave: "30"
+  name: aoc-applications
   namespace: argocd
 spec:
   sources:
-    - path: charts/bucket-operator
+    - repoURL: "https://github.com/roscoejp/gitops-samples.git"
+      targetRevision: main
+      ref: values_repo
+    - path: charts/application-with-subcharts
       repoURL: "https://github.com/roscoejp/gitops-samples.git"
       targetRevision: main
-    - path: charts/database-operator
-      repoURL: "https://github.com/roscoejp/gitops-samples.git"
-      targetRevision: main
+      helm:
+        valueFiles:
+          - $values_repo/values/podinfo-values.yaml
   destination:
-    namespace: operators
+    namespace: default
     server: "https://kubernetes.default.svc"
   project: default
   syncPolicy:
