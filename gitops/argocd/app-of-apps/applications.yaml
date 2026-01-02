@@ -14,7 +14,7 @@ spec:
       repoURL: "https://github.com/stefanprodan/podinfo.git"
       targetRevision: master
       helm:
-        valuesFiles:
+        valueFiles:
           - $values_repo/values/podinfo-values.yaml
   destination:
     namespace: default
