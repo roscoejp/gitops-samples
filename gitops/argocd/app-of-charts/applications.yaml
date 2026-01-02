@@ -15,7 +15,7 @@ spec:
       targetRevision: main
       helm:
         valueFiles:
-          - $values_repo/values/podinfo-values.yaml
+          - $values_repo/values/application-with-subcharts-values.yaml
   destination:
     namespace: default
     server: "https://kubernetes.default.svc"
