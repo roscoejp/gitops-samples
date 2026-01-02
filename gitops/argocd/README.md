@@ -11,9 +11,9 @@ Podinfo is used as a sample application with values read from the values directo
 After Argo has been installed to the cluster...
 ```bash
 # Add healthchecks to Application resources
-kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/argocd-cm.yaml
+kubectl patch cm/argocd-cm -n argocd --type=merge -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/argocd-cm.yaml
 # Deploy the root Application
-kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/bootstrap.yaml
+kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/app-of-apps.yaml
 ```
 
 ## Progressive Syncs
