@@ -12,11 +12,11 @@ After Argo has been installed to the cluster...
 ```bash
 ARGO_EXAMPLE=app-of-apps  # one of: `app-of-apps`, `app-of-charts`
 # Add real healthchecks to Argocd applications and failing ones to CRs
-kubectl patch cm/argocd-cm -n argocd --type=merge -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/argocd-cm.yaml
+kubectl patch cm/argocd-cm -n argocd --type=merge --patch-file https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/argocd-cm.yaml
 # Deploy the root Argocd applications
 kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/$ARGO_EXAMPLE.yaml
 # "Fix" the healthchecks for CRs to unblock progress
-kubectl patch cm/argocd-cm -n argocd --type=merge -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/argocd-cm-fix.yaml
+kubectl patch cm/argocd-cm -n argocd --type=merge --patch-file https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/argocd-cm-fix.yaml
 ```
 
 ## Progressive Syncs
