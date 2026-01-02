@@ -2,7 +2,7 @@
 apiVersion: reliantrobin.org/v1
 kind: Bucket 
 metadata:
-  name: "{{ if $.Values.prefix }}{{ $.Values.prefix }}-{{- end }}s3-{{ $name }}-{{ if $.Values.suffix }{{ $.Values.suffix }}{{- end }}"
+  name: "{{ if $.Values.prefix }}{{ $.Values.prefix }}-{{- end }}s3-{{ $name }}{{ if $.Values.suffix }}-{{ $.Values.suffix }}{{- end }}"
   {{ if $.Values.syncwave }}
   annotations:
     argocd.argoproj.io/sync-wave: "{{ $.Values.syncwave }}"

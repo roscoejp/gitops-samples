@@ -1,16 +1,50 @@
 data:
-  resource.customizations: |
-    argoproj.io/Application:
-      health.lua: |
-        hs = {}
-        hs.status = "Progressing"
-        hs.message = ""
-        if obj.status ~= nil then
-          if obj.status.health ~= nil then
-            hs.status = obj.status.health.status
-            if obj.status.health.message ~= nil then
-              hs.message = obj.status.health.message
-            end
+  resource.customizations.health.argoproj.io_Application: |
+    hs = {}
+    hs.status = "Progressing"
+    hs.message = ""
+    if obj.status ~= nil then
+      local status = obj.status
+      if status.conditions ~= nil then
+        for i, condition in ipairs(status.conditions) do
+          if condition.type ~= nil and string.match(condition.type, '.*Error$') then
+            hs.status = "Degraded"
+            hs.message = condition.message
+            return hs
           end
         end
-        return hs
+      end
+      if status.health ~= nil then
+        local health = status.health
+
+        if health.status ~= "Healthy" then
+          hs.status = health.status
+          if health.message ~= nil then
+            hs.message = health.message
+          end
+          return hs
+        end
+
+        if status.sync ~= nil then
+          local sync = status.sync
+
+          if sync.status ~= "Synced" then
+            hs.status = "Progressing"
+            return hs
+          end
+
+          if sync.comparedTo ~= nil and sync.comparedTo.source ~= nil and sync.comparedTo.source.targetRevision ~= nil and obj.spec ~= nil and obj.spec.source ~= nil then
+            if sync.comparedTo.source.targetRevision ~= obj.spec.source.targetRevision then
+              hs.status = "Progressing"
+              hs.message = "Sync status is for old targetRevision, waiting for update..."
+            end
+          end
+
+          if health.status == "Healthy" and sync.status == "Synced" then
+            hs.status = "Healthy"
+            return hs
+          end
+        end
+      end
+    end
+    return hs
