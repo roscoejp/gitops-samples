@@ -1,4 +1,6 @@
-replicas: 2
+replicas: 1
+service:
+  type: LoadBalancer
 
 bucket-resource:
   prefix: ""
