@@ -8,7 +8,7 @@ metadata:
 spec:
   source:
     path: gitops/argocd/app-of-apps
-    repoURL: "git@github.com:roscoejp/gitops-samples.git"
+    repoURL: "https://github.com/roscoejp/gitops-samples.git"
     targetRevision: main
   destination:
     namespace: argocd
