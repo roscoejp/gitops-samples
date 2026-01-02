@@ -1,0 +1,13 @@
+replicas: 1
+service:
+  type: LoadBalancer
+
+bucket-resource:
+  prefix: ""
+  suffix: ""
+  names: ["one", "two", "three"]
+
+database-resource:
+  prefix: ""
+  suffix: ""
+  names: ["one", "two", "three"]
