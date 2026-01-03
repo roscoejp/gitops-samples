@@ -1,13 +1,23 @@
 replicaCount: 1
 service:
   type: LoadBalancer
+volumeMounts:
+  - name: index
+    mountPath: /usr/share/nginx/html/
+    readOnly: true
+volumes:
+  - name: index
+    configMap:
+      name: index
 
 bucket-resource:
-  prefix: ""
-  suffix: ""
+  prefix: bucket
+  suffix: resource
   names: ["one", "two", "three"]
+  syncwave: "-10" # prior to any resources lacking annotation
 
 database-resource:
-  prefix: ""
-  suffix: ""
+  prefix: database
+  suffix: resource
   names: ["one", "two", "three"]
+  syncwave: "-20" # prior to any resources lacking annotation

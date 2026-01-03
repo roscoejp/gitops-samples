@@ -32,6 +32,3 @@ dependencies:
   - name: database-resource
     repository: "file://..//database-resource/"
     version: 1.2.3
-  - name: sample-component
-    repository: "file://..//sample-component/"
-    version: 1.2.3

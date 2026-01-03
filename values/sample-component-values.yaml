@@ -1,0 +1,3 @@
+prefix: "sample"
+suffix: "component"
+names: ["one", "two", "three"]
