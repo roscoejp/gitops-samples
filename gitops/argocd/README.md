@@ -28,13 +28,12 @@ A small sample chart using Nginx and the same resource charts as the app-of-apps
 # Instructions
 After Argo has been installed to the cluster run the following from this directory:
 ```bash
-ARGO_EXAMPLE=app-of-apps  # one of: `app-of-apps`, `app-of-charts`
-
 # Add healthchecks to Argocd applications and failing HCs to Custom Resources
 kubectl patch cm/argocd-cm -n argocd --type=merge --patch-file ./argocd-cm.yaml
 
-# Deploy the root Argocd application
-kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/$ARGO_EXAMPLE/root.yaml
+# Deploy the root Argocd applications
+kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/app-of-apps/root.yaml
+kubectl apply -f https://raw.githubusercontent.com/roscoejp/gitops-samples/main/gitops/argocd/app-of-charts/root.yaml
 
 # Take this time to breath and observe that applications are not deploying due to failing resource healthchecks...
 
