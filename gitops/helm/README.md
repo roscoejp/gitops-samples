@@ -1,2 +1,0 @@
-- Chart of subcharts
-- Argos' official docs on Cluster Boostrapping cover Chart of Apps: https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/

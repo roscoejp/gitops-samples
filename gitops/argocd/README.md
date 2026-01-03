@@ -9,7 +9,7 @@ Podinfo is used as a sample application with values read from the values directo
 
 # App of Charts Pattern
 > [!IMPORTANT]  
-> Helm itself does not make any guarantees around subchart deployment ordering or timing.
+> Helm by itself does not make any guarantees around subchart deployment ordering or timing.
 
 This example uses Argo for bootstrapping a Helm umbrella chart in the following order:
 1. Operator Charts: Define CRDs
