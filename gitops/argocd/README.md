@@ -13,10 +13,10 @@ Podinfo is used as a sample application with values read from the values directo
 
 ## App of Charts Pattern
 
-> [!CRITICAL]  
+> [!IMPORTANT]  
 > Helm by itself does not make any guarantees around subchart deployment ordering or timing. We're still making use of Argocd syncwaves within subcharts to control deployment ordering.
 
-> [!IMPORTANT]  
+> [!NOTE]  
 > Argocd syncwaves have a default value of "0", but negative numbers can be used to ensure deployment prior to un-annotated resources.
 
 This example uses Argcdo for bootstrapping a Helm umbrella application chart in the following order:
