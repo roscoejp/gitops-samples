@@ -9,18 +9,18 @@ spec:
   sources:
     - ref: values
       repoURL: "https://github.com/roscoejp/gitops-samples.git"
-      targetRevision: main
+      targetRevision: apps-in-helm
     - releaseName: operators
       path: charts/argocd-applications
       repoURL: "https://github.com/roscoejp/gitops-samples.git"
-      targetRevision: main
+      targetRevision: apps-in-helm
       helm:
         valueFiles:
           - $values/gitops/argocd/app-of-appcharts/operators.yaml
     - releaseName: applications
       path: charts/argocd-applications
       repoURL: "https://github.com/roscoejp/gitops-samples.git"
-      targetRevision: main
+      targetRevision: apps-in-helm
       helm:
         valueFiles:
           - $values/gitops/argocd/app-of-appcharts/applications.yaml
