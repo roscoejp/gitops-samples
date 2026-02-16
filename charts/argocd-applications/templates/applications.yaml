@@ -14,22 +14,19 @@ spec:
     namespace: {{ $app.namespace | default $app.name | quote }}
     server: {{ $config.destination.server | quote }}
   project: {{ $config.project }}
-  sources:
-    {{- with $app.sources }}
-    {{- . | toYaml | nindent 4 }}
-    {{- end }}
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
     retry:
       limit: 5
       backoff:
         duration: 5s
-        maxDuration: 3m0s
         factor: 2
-
+        maxDuration: 3m0s
+  sources:
+    {{- .sources | toYaml | nindent 4 }}
 ---
 {{ end -}}
