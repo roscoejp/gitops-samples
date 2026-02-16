@@ -27,6 +27,6 @@ spec:
         factor: 2
         maxDuration: 3m0s
   sources:
-    {{- $app.sources | toYaml | nindent 4 }}
+    {{- toYaml $app.sources | nindent 4 }}
 ---
 {{ end -}}
