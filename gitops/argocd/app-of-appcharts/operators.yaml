@@ -10,7 +10,7 @@ applications:
     sources:
       - path: charts/bucket-operator
         repoURL: https://github.com/roscoejp/gitops-samples.git
-        targetRevision: main
+        targetRevision: apps-in-helm
   - name: database-operator
     sources:
       - path: charts/bucket-operator
