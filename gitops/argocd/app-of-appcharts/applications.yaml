@@ -17,3 +17,4 @@ applications:
         helm:
           valuesFiles:
             - $values/values/application-with-subcharts-values.yaml
+          releaseName: app-with-subcharts
