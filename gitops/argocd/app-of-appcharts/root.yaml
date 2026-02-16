@@ -6,37 +6,37 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  sources:
-    - ref: values
-      repoURL: "https://github.com/roscoejp/gitops-samples.git"
-      targetRevision: apps-in-helm
-    - helm:
-        releaseName: operators
-        valueFiles:
-          - $values/gitops/argocd/app-of-appcharts/operators.yaml
-      path: charts/argocd-applications
-      repoURL: "https://github.com/roscoejp/gitops-samples.git"
-      targetRevision: apps-in-helm
-    - helm:
-        releaseName: applications
-        valueFiles:
-          - $values/gitops/argocd/app-of-appcharts/applications.yaml
-      path: charts/argocd-applications
-      repoURL: "https://github.com/roscoejp/gitops-samples.git"
-      targetRevision: apps-in-helm
   destination:
-    namespace: argocd
     server: "https://kubernetes.default.svc"
+    namespace: argocd
   project: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
     retry:
       limit: 5
       backoff:
         duration: 5s
-        maxDuration: 3m0s
         factor: 2
-    syncOptions:
-      - CreateNamespace=true
+        maxDuration: 3m0s
+  sources:
+    - ref: values
+      repoURL: "https://github.com/roscoejp/gitops-samples.git"
+      targetRevision: apps-in-helm
+    - repoURL: "https://github.com/roscoejp/gitops-samples.git"
+      path: charts/argocd-applications
+      targetRevision: apps-in-helm
+      helm:
+        valueFiles:
+          - $values/gitops/argocd/app-of-appcharts/operators.yaml
+        releaseName: operators
+    - repoURL: "https://github.com/roscoejp/gitops-samples.git"
+      path: charts/argocd-applications
+      targetRevision: apps-in-helm
+      helm:
+        valueFiles:
+          - $values/gitops/argocd/app-of-appcharts/applications.yaml
+        releaseName: applications
