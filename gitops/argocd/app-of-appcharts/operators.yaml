@@ -1,0 +1,18 @@
+config:
+  cluster: default
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  syncwave: -10
+
+applications:
+  - name: bucket-operator
+    sources:
+      - path: charts/bucket-operator
+        repoURL: https://github.com/roscoejp/gitops-samples.git
+        targetRevision: main
+  - name: database-operator
+    sources:
+      - path: charts/bucket-operator
+        repoURL: https://github.com/roscoejp/gitops-samples.git
+        targetRevision: main
