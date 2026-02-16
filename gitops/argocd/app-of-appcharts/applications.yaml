@@ -1,9 +1,8 @@
 config:
   cluster: default
-  spec:
-    destination:
-      server: https://kubernetes.default.svc
-    project: default
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
   sync-wave: 0
 
 applications:
