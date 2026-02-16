@@ -13,7 +13,7 @@ applications:
         targetRevision: apps-in-helm
       - path: charts/application-with-subcharts
         repoURL: https://github.com/roscoejp/gitops-samples.git
-        targetRevision: apps-in-helm
+        targetRevision: main
         helm:
           valuesFiles:
             - $values/values/application-with-subcharts-values.yaml
