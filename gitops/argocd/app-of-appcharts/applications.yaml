@@ -10,7 +10,7 @@ applications:
     sources:
       - ref: values
         repoURL: "https://github.com/roscoejp/gitops-samples.git"
-        targetRevision: main
+        targetRevision: apps-in-helm
       - path: charts/application-with-subcharts
         repoURL: https://github.com/roscoejp/gitops-samples.git
         targetRevision: main
