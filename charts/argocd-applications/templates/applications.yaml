@@ -1,0 +1,34 @@
+{{- range $app := $.Values.applications }}
+{{- $config := $.Values.config -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ $config.syncwave | default 0 | quote }}
+  name: {{ $config.cluster }}-{{ $app.name }}
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ $app.namespace | default $app.name | quote }}
+    server: {{ $config.destination.server | quote }}
+  project: {{ $config.project }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+  {{- with $app.sources }}
+  sources:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+---
+{{ end -}}

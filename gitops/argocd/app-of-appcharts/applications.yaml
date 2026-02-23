@@ -1,0 +1,20 @@
+config:
+  cluster: default
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  sync-wave: 0
+
+applications:
+  - name: application-with-subcharts
+    sources:
+      - ref: values
+        repoURL: "https://github.com/roscoejp/gitops-samples.git"
+        targetRevision: main
+      - path: charts/application-with-subcharts
+        repoURL: https://github.com/roscoejp/gitops-samples.git
+        targetRevision: main
+        helm:
+          valuesFiles:
+            - $values/values/application-with-subcharts-values.yaml
+          releaseName: amain
