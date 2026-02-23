@@ -15,6 +15,6 @@ applications:
         repoURL: https://github.com/roscoejp/gitops-samples.git
         targetRevision: main
         helm:
-          valuesFiles:
+          valueFiles:
             - $values/values/application-with-subcharts-values.yaml
           releaseName: amain
